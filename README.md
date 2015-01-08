@@ -1,11 +1,12 @@
-Примеры SQL
-===========
+Описание
+========
 
-Оптимизация, нестандартное использование и обычные примеры на SQL (MySQL).
+Примеры SQL.
 
-`abc-xyz.sql` - [ABC- и XYZ-анализ](http://www.e-xecutive.ru/wiki/index.php/ABC/_XYZ_%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7) на SQL
+Примеры
+-------
 
-![ABC- XYZ-](src/abcxyz.png?raw=true)
+`abc-xyz.sql` - ABC- и XYZ-анализ на SQL
 
 `count.sql` - количество найденных записей с подсказкой SQL_CALC_FOUND_ROWS
 
@@ -25,7 +26,7 @@
 
 `partitions.sql` - пример использования партиций
 
-`regexp-repace.sql` - функция замены по регулярному выражению
+`regexp-replace.sql` - функция замены по регулярному выражению
 
 `showcase-sort.sql` - умная сортировка (если ord = 0, в конце, сначала товары в наличии, затем с ценой, позже остальные)
 
