@@ -1,4 +1,6 @@
--- Функция транслитерации
+# Хранимая функция транслитерации
+
+```
 DELIMITER $$
 
 DROP FUNCTION IF EXISTS `transliterate` $$
@@ -10,7 +12,7 @@ BEGIN
   DECLARE `i` INT(11);
   SET `str3` = '';
   SET `i` = 1;
-  SET `len` = CHAR_LENGTH(`str`); 
+  SET `len` = CHAR_LENGTH(`str`);
   -- идем циклом по символам строки
   WHILE `i` <= `len` DO -- выполняем преобразование припомощи функции ELT
     SET `str2` = ELT(
@@ -36,3 +38,4 @@ BEGIN
 END $$
 
 DELIMITER ;
+```

@@ -1,0 +1,6 @@
+# Имеющиеся процедуры и функции
+
+```
+SHOW PROCEDURE STATUS WHERE Db = DATABASE();
+SHOW FUNCTION STATUS WHERE Db = DATABASE();
+```

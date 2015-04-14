@@ -1,7 +1,8 @@
--- ABC- и XYZ-анализ на SQL
+# ABC- и XYZ-анализ на SQL
 
--- DB schema
+## DB schema
 
+```
 CREATE TABLE IF NOT EXISTS `items` (
   `name` VARCHAR(255) DEFAULT NULL,
   `art` INT(11) NOT NULL,
@@ -9,8 +10,11 @@ CREATE TABLE IF NOT EXISTS `items` (
   `count_boxes` INT(11) DEFAULT NULL,
   PRIMARY KEY (`art`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+```
 
--- Table data
+Table data:
+
+```
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Степлер SAX 49',1238,455,325);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Степлер SAX 51',1245,410,1550);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Ручка Senator Spring',4589,398,530);
@@ -21,9 +25,11 @@ INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Ручка
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Ручка Ico Omega',4678,95,525);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Тонер-картридж HP C7115X',5889,23,305);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Тонер-картридж HPC8061A',5890,4,1800);
+```
 
+## ABC-, XYZ-analysis
 
--- ABC-, XYZ-analysis
+```
 START TRANSACTION;
 SET @abc = 0;
 SET @xyz = 0;
@@ -31,7 +37,7 @@ SELECT @cnt := COUNT(*) FROM `items`;
 SET @pos_1 = ROUND(@cnt*0.2);
 SET @pos_2 = @pos_1 + ROUND(@cnt*0.3);
 
-SELECT abc_table.name, abc_table.art, abc_table.count_sold, abc_table.count_boxes, 
+SELECT abc_table.name, abc_table.art, abc_table.count_sold, abc_table.count_boxes,
 abc_table.abc, xyz_table.xyz, CONCAT(abc_table.abc, xyz_table.xyz) AS `abc_xyz`,
 CASE
     WHEN CONCAT(abc_table.abc, xyz_table.xyz) IN('AX', 'AY', 'BX') THEN 1
@@ -63,3 +69,4 @@ ORDER BY `matrix_group`
 ;
 
 COMMIT;
+```

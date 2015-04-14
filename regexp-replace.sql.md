@@ -1,17 +1,19 @@
--- Функция замены по регулярному выражению
+# Функция замены по регулярному выражению
+
+```
 DELIMITER $$
 
 CREATE FUNCTION `regex_replace`(pattern VARCHAR(1000), replacement VARCHAR(1000), original VARCHAR(1000)) RETURNS VARCHAR(1000) CHARSET utf8 DETERMINISTIC
-BEGIN 
-  DECLARE temp VARCHAR(1000); 
-  DECLARE ch VARCHAR(1); 
+BEGIN
+  DECLARE temp VARCHAR(1000);
+  DECLARE ch VARCHAR(1);
   DECLARE i INT;
   SET i = 1;
   SET temp = '';
-  IF original REGEXP pattern THEN 
-    loop_label: LOOP 
+  IF original REGEXP pattern THEN
+    loop_label: LOOP
       IF i>CHAR_LENGTH(original) THEN
-        LEAVE loop_label;  
+        LEAVE loop_label;
       END IF;
       SET ch = SUBSTRING(original,i,1);
       IF NOT ch REGEXP pattern THEN
@@ -28,3 +30,4 @@ BEGIN
 END $$
 
 DELIMITER ;
+```

@@ -1,4 +1,6 @@
--- Пример использования партиций
+# Пример использования партиций
+
+```
 CREATE TABLE news_range (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `idate` INT(11) UNSIGNED NOT NULL DEFAULT '0',
@@ -17,5 +19,6 @@ PARTITION BY RANGE( `idate` ) (
   PARTITION p_2013_2 VALUES LESS THAN(1262293200 + 15768000*8),
   PARTITION p_new VALUES LESS THAN(MAXVALUE)
   );
-  
+
 EXPLAIN PARTITIONS SELECT * FROM news_range;
+```
