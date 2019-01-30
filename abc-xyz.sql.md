@@ -2,7 +2,7 @@
 
 ## DB schema
 
-```
+```sql
 CREATE TABLE IF NOT EXISTS `items` (
   `name` VARCHAR(255) DEFAULT NULL,
   `art` INT(11) NOT NULL,
@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS `items` (
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 ```
 
-Table data:
+## Table data
 
-```
+```sql
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Степлер SAX 49',1238,455,325);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Степлер SAX 51',1245,410,1550);
 INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Ручка Senator Spring',4589,398,530);
@@ -29,8 +29,7 @@ INSERT INTO `items`(`name`,`art`,`count_sold`,`count_boxes`) values ('Тонер
 
 ## ABC-, XYZ-analysis
 
-```
-START TRANSACTION;
+```sql
 SET @abc = 0;
 SET @xyz = 0;
 SELECT @cnt := COUNT(*) FROM `items`;
@@ -67,6 +66,23 @@ JOIN
 USING(`art`)
 ORDER BY `matrix_group`
 ;
+```
 
-COMMIT;
+Results:
+
+```
++--------------------------+------+------------+-------------+------+------+---------+--------------+
+| name                     | art  | count_sold | count_boxes | abc  | xyz  | abc_xyz | matrix_group |
++--------------------------+------+------------+-------------+------+------+---------+--------------+
+| Степлер SAX 51           | 1245 |        410 |        1550 | A    | X    | AX      |            1 |
+| Степлер SAX 49           | 1238 |        455 |         325 | A    | Z    | AZ      |            2 |
+| Тонер-картридж HPC8061A  | 5890 |          4 |        1800 | C    | X    | CX      |            2 |
+| Ручка Senator Spring     | 4589 |        398 |         530 | B    | Y    | BY      |            2 |
+| Ручка Ico Omega          | 4678 |         95 |         525 | C    | Y    | CY      |            3 |
+| Тонер-картридж HP C7115X | 5889 |         23 |         305 | C    | Z    | CZ      |            3 |
+| Ручка Pilot              | 4593 |        355 |         335 | B    | Z    | BZ      |            3 |
+| Ручка Parker Sonet       | 4599 |        223 |         115 | B    | Z    | BZ      |            3 |
+| Ручка Parker Insignia    | 4600 |        131 |         580 | C    | Y    | CY      |            3 |
+| Ручка Parker Frontier    | 4611 |        110 |         123 | C    | Z    | CZ      |            3 |
++--------------------------+------+------------+-------------+------+------+---------+--------------+
 ```
