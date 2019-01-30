@@ -63,7 +63,8 @@ FROM (
   GROUP BY `region`) AS `dummy_alias`
 WHERE LEAST(0, @counter := @counter + 1) = 0 ORDER BY `counter`;
 
--- counter: 1, 2, 3, 4, 5
+-- counter: 1, 2, 3, 4, 5 (версия MySQL 5.5.62)
+-- counter: 21, 22, 23, 24, 25 (версия MySQL: 10.3.9-MariaDB)
 ```
 
 # Пример 4
